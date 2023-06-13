@@ -37,12 +37,13 @@ Imagine que você é desenvolvedor da MeicanSoft, uma importante empresa de Soft
 Anteriormente, você viu que o TDD é uma técnica de desenvolvimento de software que consiste em escrever testes antes de escrever o código. Então, vamos começar criando um teste para o formulário de contato.
 
 #### 1.1. Criando o primeiro teste
+Inicialmente, vamos criar um teste End-to-End que verifica se o formulário de contato está sendo renderizado. Para isso, vamos utilizar o Cypress.
 
 Crie um arquivo chamado `ContactForm.spec.js` dentro da pasta `cypress/integration` e adicione o seguinte código:
 ```js
 describe('ContactForm', () => {
   it('should render the form', () => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:5173')
     cy.get('form').should('exist')
   })
 })
