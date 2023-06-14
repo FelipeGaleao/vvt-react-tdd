@@ -108,7 +108,9 @@ describe('Formulário de Contato', () => {
 
 Esse código será responsável por garantir que no caso de teste `Formulário de Contato`, ao clicar no botão de enviar, o formulário envie os dados e exiba uma mensagem de sucesso.
 
+#### 2.2. Criando o componente de mensagem
 Rodando os testes, você verá que a mensagem de sucesso não está sendo exibida, ocasionando falha em um dos testes. Então, vamos adicionar a mensagem de sucesso ao formulário de contato.
 Abra o arquivo `index.jsx` que está dentro de `src/Componentes/Mensagem/index.jsx` e descomente as linhas 3 a 10. Você verá que o componente de mensagem já está criado, porém, ele não está sendo renderizado na página. Para renderizar o componente, abra o arquivo `index.jsx` que está dentro de `src/Componentes/index.jsx` e descomente as linhas 7 a 9.
 
+#### 2.3. Implementando a mensagem de sucesso e verificando de casos de teste
 Em sequência, abra o arquivo `App.jsx` que está dentro de `src` e descomente as linhas 21. Agora, ao rodar os testes, você verá que os testes estão passando.
