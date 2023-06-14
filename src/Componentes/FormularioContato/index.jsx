@@ -100,13 +100,14 @@ const useStyles = createStyles((theme) => {
 });
 
 export function FormularioContato(props) {
+    
     const { classes } = useStyles();
 
     return (
         <Paper shadow="md" radius="lg">
             <div className={classes.wrapper}>
 
-                <form className={classes.form} onSubmit={(event) => event.preventDefault()}>
+                {/* <form className={classes.form} onSubmit={(event) => event.preventDefault()}>
                     <Text fz="lg" fw={700} className={classes.title}>
                         Entre em contato com a Meican<b>Soft</b>
                     </Text>
@@ -129,21 +130,21 @@ export function FormularioContato(props) {
                         />
 
                         <Group position="right" mt="md">
-                            <Button id="btnEnviar" type="submit" className={classes.control} onClick={props.enviarFormulario}>
+                            <Button id="btnEnviar" type="submit" className={classes.control} onClick={(e) => props.handleForm(e)}>
                                 Enviar mensagem
                             </Button>
                         </Group>
                     </div>
-                </form>
+                </form> */}
             </div>
         </Paper>
     );
 }
 
 FormularioContato.propTypes = {
-    enviarFormulario: PropTypes.func
+    handleForm: PropTypes.func
 };
 
 FormularioContato.defaultProps = {
-    enviarFormulario: () => { }
+    handleForm: () => { }
 };

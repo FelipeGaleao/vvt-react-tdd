@@ -35,16 +35,17 @@ describe('Formulário de Contato', () => {
 describe('Formulário de Contato', () => {
   beforeEach(() => {
     cy.visit(URL_APLICACAO)
-  })
-
-  it('Deve enviar os dados do formulário', () => {
     cy.get('input[id="txtNome"]').type('Teste Cypress')
     cy.get('input[id="txtEmail"]').type('maycon.mota@ufms.br')
     cy.get('textarea[id="txtMensagem"]').type('Teste Cypress')
+  })
+
+  it('Deve enviar os dados do formulário', () => {
     cy.get('button[id="btnEnviar"]').click()
   })
 
   it('Deve retornar a mensagem de sucesso', () => {
+    cy.get('button[id="btnEnviar"]').click()
     cy.get('div[id="divMensagem"]').should('have.text', 'Mensagem enviada com sucesso!')
     cy.get('div[id="divMensagem"]').should('be.visible')
   }

@@ -11,14 +11,15 @@ function App() {
   const [visible, setVisible] = useState(false)
 
   const enviarFormulario = () => {
+    console.log('enviarFormulario')
     setVisible(true)
   }
 
   return (
     <>
       <div>
-        {visible ? <Mensagem visible={visible} /> : null}
-        <FormularioContato function={enviarFormulario} />
+        {/* {visible ? <Mensagem visible={visible} /> : null}
+        <FormularioContato handleForm={enviarFormulario} /> */}
       </div>
     </>
   )

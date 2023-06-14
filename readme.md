@@ -39,12 +39,76 @@ Anteriormente, você viu que o TDD é uma técnica de desenvolvimento de softwar
 #### 1.1. Criando o primeiro teste
 Inicialmente, vamos criar um teste End-to-End que verifica se o formulário de contato está sendo renderizado. Para isso, vamos utilizar o Cypress.
 
-Crie um arquivo chamado `ContactForm.spec.js` dentro da pasta `cypress/integration` e adicione o seguinte código:
+Crie um arquivo chamado `ContactForm.cy.js` dentro da pasta `cypress/e2e` e adicione o seguinte código:
+
 ```js
-describe('ContactForm', () => {
-  it('should render the form', () => {
-    cy.visit('http://localhost:5173')
+describe('Formulário de Contato', () => {
+  beforeEach(() => {
+    cy.visit(URL_APLICACAO)
+  })
+
+  it('Deve possuir uma div de formulário de contato', () => {
     cy.get('form').should('exist')
   })
+
+  it('Deve possuir um campo de nome', () => {
+    cy.get('input[id="txtNome"]').should('exist')
+  })
+
+  it('Deve possuir um campo de email', () => {
+    cy.get('input[id="txtEmail"]').should('exist')
+  })
+
+  it('Deve possuir um campo de mensagem', () => {
+    cy.get('textarea[id="txtMensagem"]').should('exist')
+  })
+  
+  it('Deve possuir um botão de enviar', () => {
+    cy.get('button[id="btnEnviar"]').should('exist')
+  }) 
 })
 ```
+
+Esse código será responsável por garantir que no caso de teste `Formulário de Contato`, o formulário de contato seja renderizado e que os campos `Nome`, `E-mail`, `Mensagem` e `Botão de enviar` estejam presentes.
+
+Ao executar o código, você verá que seus testes estão falhando, pois não há nenhum formulário de contato na página. Então, vamos criar o componente de formulário de contato.
+
+#### 1.2. Criando o componente de formulário de contato
+Agora que já temos um teste, vamos criar o componente de formulário de contato. Para isso, abra o arquivo chamado `index.jsx` dentro da pasta `src/Componentes/index.jsx` e descomente as linhas 110 a 138.
+Você verá que o componente de formulário de contato já está criado, porém, ele não está sendo renderizado na página. Para renderizar o componente, abra o arquivo `App.jsx` dentro da pasta `src` e descomente a linha 22.
+
+### 2. Adicionando novos requisitos ao formulário de contato
+Agora que já temos um formulário de contato, vamos adicionar novos requisitos a ele. Ao clicar em submit, o formulário deve exibir uma mensagem de sucesso. Para isso, vamos criar um novo teste.
+
+#### 2.1 Criando um novo teste
+No arquivo `ContactForm.cy.js`, que está dentro de `cypress/e2e`, adicione o seguinte código:
+
+```js
+
+describe('Formulário de Contato', () => {
+  beforeEach(() => {
+    cy.visit(URL_APLICACAO)
+    cy.get('input[id="txtNome"]').type('Teste Cypress')
+    cy.get('input[id="txtEmail"]').type('maycon.mota@ufms.br')
+    cy.get('textarea[id="txtMensagem"]').type('Teste Cypress')
+  })
+
+  it('Deve enviar os dados do formulário', () => {
+    cy.get('button[id="btnEnviar"]').click()
+  })
+
+  it('Deve retornar a mensagem de sucesso', () => {
+    cy.get('button[id="btnEnviar"]').click()
+    cy.get('div[id="divMensagem"]').should('have.text', 'Mensagem enviada com sucesso!')
+    cy.get('div[id="divMensagem"]').should('be.visible')
+  }
+  )
+})
+```
+
+Esse código será responsável por garantir que no caso de teste `Formulário de Contato`, ao clicar no botão de enviar, o formulário envie os dados e exiba uma mensagem de sucesso.
+
+Rodando os testes, você verá que a mensagem de sucesso não está sendo exibida, ocasionando falha em um dos testes. Então, vamos adicionar a mensagem de sucesso ao formulário de contato.
+Abra o arquivo `index.jsx` que está dentro de `src/Componentes/Mensagem/index.jsx` e descomente as linhas 3 a 10. Você verá que o componente de mensagem já está criado, porém, ele não está sendo renderizado na página. Para renderizar o componente, abra o arquivo `index.jsx` que está dentro de `src/Componentes/index.jsx` e descomente as linhas 7 a 9.
+
+Em sequência, abra o arquivo `App.jsx` que está dentro de `src` e descomente as linhas 21. Agora, ao rodar os testes, você verá que os testes estão passando.
